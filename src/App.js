@@ -1,9 +1,9 @@
 import './App.css';
-import Home from './Pages/Home'
+import Router from './router';
 
 function App() {
   return (
-    <Home />
+    <Router />
   )
 }
 
