@@ -1,5 +1,13 @@
+import { useEffect } from "react";
 import Header from "../Header";
+import axios from "axios";
 function Form() {
+    useEffect(() => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+            .then((response) => {
+                console.log(response.data)
+            });
+    }, []);
     return (
         <div>
             <Header title="React Form" />
