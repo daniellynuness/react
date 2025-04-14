@@ -5,7 +5,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-  align-items: center;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: block; /* Garante que o elemento seja tratado como bloco */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -27,8 +28,13 @@
 
 .App-link {
   color: #61dafb;
+  text-decoration: none;
+  margin-top: 20px; /* Espaçamento entre o link e outros elementos */
+  font-size: 1.2rem; /* Ajusta o tamanho da fonte */
+  display: inline-block; /* Garante que o link seja tratado como bloco */
+  text-align: center; /* Centraliza o texto dentro do link */
 }
-
+  
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
