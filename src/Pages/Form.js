@@ -9,6 +9,15 @@ function Form() {
                 setEstados(response.data);
             });
     }, []);
+    const [campos, setCampos] = useState({
+        txNome: '',
+        txIdade: 0,
+        cmbUF: '0'
+    });
+    function handleInputChange(event) {
+        campos[event.target.name] = event.target.value;
+        setCampos(campos);
+    }
     return (
         <div>
             <Header title="React Form" />
