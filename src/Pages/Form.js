@@ -1,6 +1,7 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Header from "../Header";
 import axios from "axios";
+
 function Form() {
     const [estados, setEstados] = useState([]);
     useEffect(() => {
@@ -9,36 +10,45 @@ function Form() {
                 setEstados(response.data);
             });
     }, []);
+
     const [campos, setCampos] = useState({
-        txNome: '',
-        txIdade: 0,
+        txtNome: '',
+        txtIdade: 0,
         cmbUF: '0'
     });
+
     function handleInputChange(event) {
         campos[event.target.name] = event.target.value;
         setCampos(campos);
     }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        axios.post('http://localhost:3001/cadastro', campos).then(response => {alert(response.data.dados.length + ' cadastro(s)!');
+        })
+    }
+    
     return (
         <div>
             <Header title="React Form" />
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <fieldset>
                     <legend>
                         <h2>Dados de cadastro</h2>
                     </legend>
                     <div>
                         <label>Nome:
-                            <input type="text" nome="txtNome" id="txtNome" style={{ marginLeft: "10px" }}/>
+                            <input type="text" name="txtNome" id="txtNome" onChange={handleInputChange} style={{ marginLeft: "10px" }}/>
                         </label>
                     </div>
                     <div>
                         <label>Idade:
-                            <input type="number" nome="txtIdade" id="txtIdade" style={{ marginLeft: "10px" }}/>
+                            <input type="number" name="txtIdade" id="txtIdade" onChange={handleInputChange} style={{ marginLeft: "10px" }}/>
                         </label>
                     </div>
                     <div>
                         <label>UF:
-                            <select name="cmbUF" id="cmbUF" style={{ marginLeft: "10px" }}>
+                            <select name="cmbUF" id="cmbUF" onChange={handleInputChange} style={{ marginLeft: "10px" }}>
                                 <option value="0">Selecione uma opção</option>
                                 {estados.map(estado => (<option key={estado.sigla} value={estado.sigla}>{estado.sigla}</option>))}
                             </select>
